@@ -277,10 +277,10 @@
   <nav class="nav">
     <span class="nav-logo">Peiran Li</span>
     <div class="nav-links">
-      <a class="active" onclick="scrollTo('research')">research</a>
-      <a onclick="scrollTo('experience')">experience</a>
-      <a onclick="scrollTo('photos')">life</a>
-      <a onclick="scrollTo('skills')">about</a>
+      <a class="active" onclick="document.getElementById('research').scrollIntoView({behavior:'smooth'})">research</a>
+      <a onclick="document.getElementById('experience').scrollIntoView({behavior:'smooth'})">experience</a>
+      <a onclick="document.getElementById('photos').scrollIntoView({behavior:'smooth'})">life</a>
+      <a onclick="document.getElementById('skills').scrollIntoView({behavior:'smooth'})">about</a>
     </div>
   </nav>
 
@@ -302,7 +302,28 @@
     </div>
   </section>
 
-  <!-- RESEARCH -->
+  <!-- EDUCATION -->
+  <section class="section" id="education">
+    <div class="section-label">Education</div>
+    <div class="exp-item">
+      <div class="exp-date">Expected<br>Aug 2027</div>
+      <div>
+        <div class="exp-title">Master of Science, Computer Science</div>
+        <div class="exp-org">Dartmouth College</div>
+        <div class="exp-desc">50% Tuition Scholarship by Dartmouth College</div>
+      </div>
+    </div>
+    <div class="exp-item">
+      <div class="exp-date">July 2025</div>
+      <div>
+        <div class="exp-title">Bachelor of Science, Computer Science</div>
+        <div class="exp-org">The Chinese University of Hong Kong</div>
+        <div class="exp-desc">Major GPA: 3.77/4.0 · Dean's List in Faculty of Engineering 2023–2024 (Top 10%) · Summer Research Grant · Honorable Mention, Microsoft Challenge Competition (2022)</div>
+      </div>
+    </div>
+  </section>
+
+    <!-- RESEARCH -->
   <section class="section" id="research">
     <div class="section-label">Research interests</div>
     <div class="interest-tags">
