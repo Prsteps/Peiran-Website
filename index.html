@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Peiran Li</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --coral: #D85A30;
+      --coral-light: #FAECE7;
+      --coral-mid: #F0997B;
+      --coral-dark: #993C1D;
+      --teal: #1D9E75;
+      --teal-light: #E1F5EE;
+      --teal-dark: #0F6E56;
+      --blue: #378ADD;
+      --blue-light: #E6F1FB;
+      --blue-dark: #185FA5;
+      --amber-light: #FAEEDA;
+      --amber-dark: #854F0B;
+      --purple-light: #EEEDFE;
+      --purple-dark: #534AB7;
+      --text: #1a1a1a;
+      --text-muted: #666;
+      --text-faint: #999;
+      --border: rgba(0,0,0,0.1);
+      --border-mid: rgba(0,0,0,0.18);
+      --bg: #fff;
+      --bg-secondary: #f7f7f5;
+      --radius: 10px;
+      --radius-sm: 6px;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      color: var(--text);
+      background: var(--bg);
+      line-height: 1.6;
+    }
+
+    .site { max-width: 720px; margin: 0 auto; padding: 0 1.5rem; }
+
+    /* ── NAV ── */
+    .nav {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 1.5rem 0 0;
+      gap: 0.75rem;
+    }
+    .nav-logo {
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--text);
+    }
+    .nav-links {
+      display: flex;
+      border-bottom: 0.5px solid var(--border);
+      width: 100%;
+      justify-content: center;
+    }
+    .nav-links a {
+      font-size: 13px;
+      color: var(--text-muted);
+      text-decoration: none;
+      padding: 0.5rem 1.25rem;
+      border-bottom: 2px solid transparent;
+      margin-bottom: -0.5px;
+      letter-spacing: 0.04em;
+      cursor: pointer;
+      transition: color 0.15s;
+    }
+    .nav-links a:hover { color: var(--text); }
+    .nav-links a.active { color: var(--coral); border-bottom-color: var(--coral); }
+
+    /* ── HERO ── */
+    .hero {
+      padding: 2.5rem 0 2rem;
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 2rem;
+      align-items: start;
+      border-bottom: 0.5px solid var(--border);
+    }
+    .hero-tag {
+      font-size: 11px;
+      color: var(--coral);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-bottom: 0.5rem;
+    }
+    .hero-name { font-size: 30px; font-weight: 500; line-height: 1.2; margin-bottom: 0.5rem; }
+    .hero-sub {
+      font-size: 14px;
+      color: var(--text-muted);
+      line-height: 1.7;
+      max-width: 380px;
+      margin-bottom: 1.25rem;
+    }
+    .hero-links { display: flex; gap: 0.5rem; flex-wrap: wrap; }
+    .pill {
+      font-size: 12px;
+      padding: 5px 13px;
+      border-radius: 999px;
+      border: 0.5px solid var(--border-mid);
+      color: var(--text-muted);
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      transition: background 0.15s;
+    }
+    .pill:hover { background: var(--bg-secondary); color: var(--text); }
+    .pill-accent { background: var(--coral-light); color: var(--coral-dark); border-color: var(--coral-mid); }
+    .pill-accent:hover { background: #F5C4B3; }
+    .avatar {
+      width: 76px; height: 76px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #9FE1CB, #5DCAA5);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 30px; flex-shrink: 0;
+    }
+
+    /* ── SECTIONS ── */
+    .section { padding: 2rem 0; border-bottom: 0.5px solid var(--border); }
+    .section-label {
+      font-size: 11px;
+      color: var(--text-faint);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-bottom: 1.25rem;
+    }
+
+    /* ── INTEREST TAGS ── */
+    .interest-tags { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 1.5rem; }
+    .interest-tag {
+      font-size: 12px; padding: 4px 13px; border-radius: 999px;
+      background: var(--teal-light); color: var(--teal-dark);
+      border: 0.5px solid #5DCAA5;
+    }
+
+    /* ── RESEARCH CARDS ── */
+    .research-card {
+      border: 0.5px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1rem 1.25rem;
+      margin-bottom: 0.75rem;
+      transition: background 0.15s, border-color 0.15s;
+    }
+    .research-card:hover { background: var(--bg-secondary); border-color: var(--border-mid); }
+    .rc-header { display: flex; justify-content: space-between; align-items: flex-start; gap: 1rem; margin-bottom: 0.4rem; }
+    .rc-title { font-size: 14px; font-weight: 500; line-height: 1.4; }
+    .rc-badge {
+      font-size: 11px; padding: 3px 10px; border-radius: 999px;
+      white-space: nowrap; flex-shrink: 0;
+      background: var(--teal-light); color: var(--teal-dark);
+    }
+    .rc-authors { font-size: 12px; color: var(--text-faint); margin-bottom: 0.3rem; }
+    .rc-authors strong { color: var(--text-muted); }
+    .rc-venue { font-size: 12px; color: var(--coral); font-weight: 500; }
+
+    /* ── EXPERIENCE ── */
+    .exp-item { display: grid; grid-template-columns: 110px 1fr; gap: 1rem; margin-bottom: 1.25rem; }
+    .exp-date { font-size: 11px; color: var(--text-faint); line-height: 1.5; padding-top: 2px; }
+    .exp-title { font-size: 14px; font-weight: 500; margin-bottom: 2px; }
+    .exp-org { font-size: 12px; color: var(--coral); margin-bottom: 4px; }
+    .exp-desc { font-size: 13px; color: var(--text-muted); line-height: 1.6; }
+
+    /* ── PHOTOS ── */
+    .tab-bar { display: flex; border-bottom: 0.5px solid var(--border); margin-bottom: 1.25rem; }
+    .tab {
+      font-size: 13px; color: var(--text-muted);
+      padding: 0.4rem 1rem; cursor: pointer;
+      border-bottom: 2px solid transparent; margin-bottom: -0.5px;
+      user-select: none; transition: color 0.15s;
+    }
+    .tab:hover { color: var(--text); }
+    .tab.active { color: var(--coral); border-bottom-color: var(--coral); }
+    .sub-tabs { display: flex; gap: 8px; margin-bottom: 1rem; flex-wrap: wrap; }
+    .sub-tab {
+      font-size: 12px; padding: 4px 14px; border-radius: 999px;
+      border: 0.5px solid var(--border-mid); color: var(--text-muted);
+      cursor: pointer; user-select: none; transition: background 0.15s;
+    }
+    .sub-tab:hover { background: var(--bg-secondary); }
+    .sub-tab.active { background: var(--coral-light); color: var(--coral-dark); border-color: var(--coral-mid); }
+    .city-tabs { display: flex; gap: 6px; margin-bottom: 1rem; }
+    .city-tab {
+      font-size: 11px; padding: 3px 11px; border-radius: 999px;
+      border: 0.5px solid var(--border); color: var(--text-faint);
+      cursor: pointer; user-select: none; transition: all 0.15s;
+    }
+    .city-tab:hover { border-color: var(--border-mid); color: var(--text-muted); }
+    .city-tab.active { background: var(--blue-light); color: var(--blue-dark); border-color: #85B7EB; }
+
+    .photo-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 8px;
+    }
+    .photo-cell {
+      aspect-ratio: 1;
+      border-radius: var(--radius-sm);
+      overflow: hidden;
+      background: var(--bg-secondary);
+      cursor: pointer;
+      position: relative;
+    }
+    .photo-cell.wide { grid-column: span 2; aspect-ratio: 2/1; }
+    .photo-cell img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.3s ease;
+    }
+    .photo-cell:hover img { transform: scale(1.03); }
+    .photo-placeholder {
+      width: 100%; height: 100%;
+      display: flex; align-items: center; justify-content: center;
+      flex-direction: column; gap: 6px;
+      color: var(--text-faint); font-size: 11px; text-align: center; padding: 8px;
+    }
+
+    .panel { display: none; }
+    .panel.active { display: block; }
+    .grid-panel { display: none; }
+    .grid-panel.active { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
+
+    /* ── LIGHTBOX ── */
+    .lightbox {
+      display: none; position: fixed; inset: 0;
+      background: rgba(0,0,0,0.88);
+      z-index: 1000; align-items: center; justify-content: center;
+    }
+    .lightbox.open { display: flex; }
+    .lightbox img { max-width: 90vw; max-height: 90vh; border-radius: 4px; object-fit: contain; }
+    .lightbox-close {
+      position: fixed; top: 1.5rem; right: 1.5rem;
+      font-size: 28px; color: #fff; cursor: pointer; line-height: 1;
+      background: none; border: none; opacity: 0.8;
+    }
+    .lightbox-close:hover { opacity: 1; }
+
+    /* ── SKILLS ── */
+    .skills-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+    .skill-block { background: var(--bg-secondary); border-radius: var(--radius-sm); padding: 0.85rem 1rem; }
+    .skill-block-label { font-size: 11px; color: var(--text-faint); letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 6px; }
+    .skill-block-content { font-size: 12px; color: var(--text-muted); line-height: 1.7; }
+
+    /* ── FOOTER ── */
+    .footer {
+      padding: 1.5rem 0 2rem;
+      display: flex; justify-content: space-between; align-items: center;
+    }
+    .footer-left { font-size: 12px; color: var(--text-faint); }
+    .footer-links { display: flex; gap: 1rem; }
+    .footer-links a { font-size: 12px; color: var(--text-faint); text-decoration: none; }
+    .footer-links a:hover { color: var(--text); }
+
+    @media (max-width: 480px) {
+      .hero { grid-template-columns: 1fr; }
+      .avatar { display: none; }
+      .exp-item { grid-template-columns: 1fr; gap: 0.25rem; }
+      .skills-grid { grid-template-columns: 1fr 1fr; }
+    }
+  </style>
+</head>
+<body>
+<div class="site">
+
+  <!-- NAV -->
+  <nav class="nav">
+    <span class="nav-logo">Peiran Li</span>
+    <div class="nav-links">
+      <a class="active" onclick="scrollTo('research')">research</a>
+      <a onclick="scrollTo('experience')">experience</a>
+      <a onclick="scrollTo('photos')">life</a>
+      <a onclick="scrollTo('skills')">about</a>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div>
+      <div class="hero-tag">CS Master's @ Dartmouth College</div>
+      <h1 class="hero-name">Hey, I'm Peiran 👋</h1>
+      <p class="hero-sub">I work on computer vision, computational photography, and AI for healthcare. Between experiments, I'm probably taking photos, exploring trails, or trying a new recipe.</p>
+      <div class="hero-links">
+        <a class="pill pill-accent" href="https://prsteps.github.io/Peiran.github.io/" target="_blank"><i class="ti ti-world"></i> Website</a>
+        <a class="pill" href="https://github.com/prsteps" target="_blank"><i class="ti ti-brand-github"></i> GitHub</a>
+        <a class="pill" href="mailto:peiran.li.gr@dartmouth.edu"><i class="ti ti-mail"></i> Email</a>
+        <a class="pill" href="#"><i class="ti ti-file-text"></i> CV</a>
+      </div>
+    </div>
+    <div class="avatar">🔬</div>
+  </section>
+
+  <!-- RESEARCH -->
+  <section class="section" id="research">
+    <div class="section-label">Research interests</div>
+    <div class="interest-tags">
+      <span class="interest-tag">Computer Vision</span>
+      <span class="interest-tag">Computational Photography</span>
+      <span class="interest-tag">AI-Driven Healthcare</span>
+    </div>
+    <div class="section-label">Publications</div>
+    <div class="research-card">
+      <div class="rc-header">
+        <div class="rc-title">EEG-based Speech Decoding Based on Multi-mode Joint Modeling</div>
+        <span class="rc-badge">Interspeech 2025</span>
+      </div>
+      <div class="rc-authors"><strong>Peiran Li</strong>, Fei Chen, Xixin Wu</div>
+      <div class="rc-venue"><i class="ti ti-microphone" style="font-size:12px;vertical-align:-1px;margin-right:4px"></i>Interspeech 2025</div>
+    </div>
+  </section>
+
+  <!-- EXPERIENCE -->
+  <section class="section" id="experience">
+    <div class="section-label">Research experience</div>
+    <div class="exp-item">
+      <div class="exp-date">Aug 2025 – Present</div>
+      <div>
+        <div class="exp-title">Bandwidth-Limited Imaging with Generative Priors</div>
+        <div class="exp-org">Dartmouth College · Prof. Adithya Pediredla</div>
+        <div class="exp-desc">Diffusion model baselines for full-resolution image reconstruction from 6.25% sparse pixel observations; spectral analysis pipeline for aliasing characterization.</div>
+      </div>
+    </div>
+    <div class="exp-item">
+      <div class="exp-date">Jun – Aug 2025</div>
+      <div>
+        <div class="exp-title">Text-to-Gloss for Hong Kong Sign Language</div>
+        <div class="exp-org">CPII, CUHK · Prof. Xixin Wu</div>
+        <div class="exp-desc">Built a translation system for HKSL in collaboration with the Hong Kong Observatory; achieved 68% BLEU via in-context learning.</div>
+      </div>
+    </div>
+    <div class="exp-item">
+      <div class="exp-date">Dec 2024 – Mar 2025</div>
+      <div>
+        <div class="exp-title">EEG-Based Speech Brain-Computer Interface</div>
+        <div class="exp-org">CUHK · Prof. Xixin Wu</div>
+        <div class="exp-desc">Multi-modal EEG model with dynamic masking; 34.95% accuracy on imagined speech across four vowel categories.</div>
+      </div>
+    </div>
+    <div class="exp-item">
+      <div class="exp-date">Sep – Nov 2024</div>
+      <div>
+        <div class="exp-title">Gaze-Based Weak Supervision for Medical Segmentation</div>
+        <div class="exp-org">CUHK · Prof. Qi Dou</div>
+        <div class="exp-desc">Reduced annotation time from 12 hrs → 2.2 hrs using eye-tracking + CRF preprocessing, preserving segmentation accuracy.</div>
+      </div>
+    </div>
+    <div class="exp-item">
+      <div class="exp-date">Jun – Aug 2024</div>
+      <div>
+        <div class="exp-title">Out-of-Distribution Detection in Neural Networks</div>
+        <div class="exp-org">CUHK · Prof. Tsung-Yi Ho</div>
+        <div class="exp-desc">Post-hoc activation shaping method; AUROC 0.97 on SVHN. Visualized decision boundaries via Grad-CAM and loss landscape analysis.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PHOTOS -->
+  <section class="section" id="photos">
+    <div class="section-label">Life in photos</div>
+
+    <div class="tab-bar">
+      <div class="tab active" onclick="switchTab(this,'travel')">✈ Travel</div>
+      <div class="tab" onclick="switchTab(this,'life')">☀ Life</div>
+      <div class="tab" onclick="switchTab(this,'people')">♥ Friends & Family</div>
+    </div>
+
+    <!-- TRAVEL -->
+    <div class="panel active" id="panel-travel">
+      <div class="sub-tabs">
+        <div class="sub-tab active" onclick="switchCountry(this,'us')">🇺🇸 United States</div>
+        <div class="sub-tab" onclick="switchCountry(this,'hk')">🇭🇰 Hong Kong</div>
+        <div class="sub-tab" onclick="switchCountry(this,'jp')">🇯🇵 Japan</div>
+      </div>
+
+      <!-- US -->
+      <div id="country-us">
+        <div class="city-tabs">
+          <div class="city-tab active" onclick="switchCity(this,'hawaii')">🌺 Hawaii</div>
+          <div class="city-tab" onclick="switchCity(this,'orlando')">🎢 Orlando</div>
+        </div>
+        <!-- Photos are loaded dynamically from photos/travel/hawaii/ -->
+        <div class="grid-panel active" id="city-hawaii" data-folder="photos/travel/hawaii"></div>
+        <div class="grid-panel" id="city-orlando" data-folder="photos/travel/orlando"></div>
+      </div>
+
+      <!-- HK -->
+      <div id="country-hk" style="display:none">
+        <div class="photo-grid" data-folder="photos/travel/hongkong" id="grid-hk"></div>
+      </div>
+
+      <!-- Japan -->
+      <div id="country-jp" style="display:none">
+        <div class="photo-grid" data-folder="photos/travel/japan" id="grid-jp"></div>
+      </div>
+    </div>
+
+    <!-- LIFE -->
+    <div class="panel" id="panel-life">
+      <div class="photo-grid" data-folder="photos/life" id="grid-life"></div>
+    </div>
+
+    <!-- PEOPLE -->
+    <div class="panel" id="panel-people">
+      <div class="photo-grid" data-folder="photos/people" id="grid-people"></div>
+    </div>
+  </section>
+
+  <!-- SKILLS -->
+  <section class="section" id="skills">
+    <div class="section-label">Skills</div>
+    <div class="skills-grid">
+      <div class="skill-block">
+        <div class="skill-block-label">Languages</div>
+        <div class="skill-block-content">Python · C/C++ · MATLAB · Java · JavaScript · SQL</div>
+      </div>
+      <div class="skill-block">
+        <div class="skill-block-label">Tools</div>
+        <div class="skill-block-content">LaTeX · Git · Linux · Conda · Spark · Vim</div>
+      </div>
+      <div class="skill-block">
+        <div class="skill-block-label">Languages spoken</div>
+        <div class="skill-block-content">Mandarin (native) · English (proficient) · Cantonese (intermediate)</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <span class="footer-left">© 2025 Peiran Li · Dartmouth College</span>
+    <div class="footer-links">
+      <a href="mailto:peiran.li.gr@dartmouth.edu">Email</a>
+      <a href="https://prsteps.github.io/Peiran.github.io/" target="_blank">Website</a>
+    </div>
+  </footer>
+
+</div>
+
+<!-- LIGHTBOX -->
+<div class="lightbox" id="lightbox" onclick="closeLightbox()">
+  <button class="lightbox-close" onclick="closeLightbox()">✕</button>
+  <img id="lightbox-img" src="" alt="">
+</div>
+
+<script>
+  // ── Photo manifest
+  // Add your photo filenames here after uploading to the folders.
+  // Format: { 'folder-id': ['file1.jpg', 'file2.jpg', ...] }
+  const PHOTOS = {
+    'city-hawaii':   [], // e.g. ['beach.jpg', 'diamond-head.jpg']
+    'city-orlando':  [], // e.g. ['disney.jpg', 'universal.jpg']
+    'grid-hk':       [], // e.g. ['skyline.jpg', 'dimsum.jpg']
+    'grid-jp':       [], // e.g. ['tokyo.jpg', 'sakura.jpg']
+    'grid-life':     [], // e.g. ['cafe.jpg', 'hiking.jpg']
+    'grid-people':   [], // e.g. ['friends.jpg', 'family.jpg']
+  };
+
+  // ── Render photos into a grid element
+  function renderGrid(el) {
+    if (el.dataset.rendered) return;
+    el.dataset.rendered = true;
+    const folder = el.dataset.folder;
+    const id = el.id;
+    const files = PHOTOS[id] || [];
+    if (files.length === 0) {
+      el.innerHTML = `<div class="photo-cell" style="grid-column:span 3;aspect-ratio:3/1;background:var(--bg-secondary)">
+        <div class="photo-placeholder"><i class="ti ti-camera" style="font-size:22px"></i><span>Photos coming soon — add filenames to PHOTOS in index.html</span></div>
+      </div>`;
+      return;
+    }
+    el.innerHTML = files.map((f, i) => {
+      const wide = i === 0 ? ' wide' : '';
+      return `<div class="photo-cell${wide}">
+        <img src="${folder}/${f}" alt="" loading="lazy" onclick="openLightbox('${folder}/${f}')">
+      </div>`;
+    }).join('');
+  }
+
+  // ── Init: render all currently-visible grids
+  document.querySelectorAll('[data-folder]').forEach(el => {
+    if (el.closest('.panel.active, .grid-panel.active, #country-us')) {
+      renderGrid(el);
+    }
+  });
+
+  // ── Tab switching
+  function switchTab(el, tab) {
+    document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+    document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
+    el.classList.add('active');
+    const panel = document.getElementById('panel-' + tab);
+    panel.classList.add('active');
+    panel.querySelectorAll('[data-folder]').forEach(renderGrid);
+  }
+
+  function switchCountry(el, country) {
+    document.querySelectorAll('.sub-tab').forEach(t => t.classList.remove('active'));
+    el.classList.add('active');
+    ['us','hk','jp'].forEach(c => {
+      const div = document.getElementById('country-' + c);
+      if (div) div.style.display = c === country ? 'block' : 'none';
+    });
+    const active = document.getElementById('country-' + country);
+    if (active) active.querySelectorAll('[data-folder]').forEach(renderGrid);
+  }
+
+  function switchCity(el, city) {
+    document.querySelectorAll('.city-tab').forEach(t => t.classList.remove('active'));
+    el.classList.add('active');
+    ['hawaii','orlando'].forEach(c => {
+      const g = document.getElementById('city-' + c);
+      if (g) g.className = 'grid-panel' + (c === city ? ' active' : '');
+    });
+    const g = document.getElementById('city-' + city);
+    if (g) renderGrid(g);
+  }
+
+  // ── Lightbox
+  function openLightbox(src) {
+    document.getElementById('lightbox-img').src = src;
+    document.getElementById('lightbox').classList.add('open');
+  }
+  function closeLightbox() {
+    document.getElementById('lightbox').classList.remove('open');
+  }
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLightbox(); });
+</script>
+</body>
+</html>
