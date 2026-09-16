@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Research · Peiran Li</title>
+  <meta name="description" content="Research of Peiran Li: single-shot HDR imaging, bandwidth-limited imaging with generative priors, EEG speech decoding.">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 64 64%27%3E%3Crect width=%2764%27 height=%2764%27 rx=%2714%27 fill=%27%236B5AE0%27/%3E%3Ctext x=%2732%27 y=%2744%27 font-family=%27-apple-system,Helvetica,Arial,sans-serif%27 font-size=%2736%27 font-weight=%27600%27 fill=%27white%27 text-anchor=%27middle%27%3EP%3C/text%3E%3C/svg%3E">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3.34.0/dist/tabler-icons.min.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="site">
+
+  <!-- NAV -->
+  <nav class="nav">
+    <a class="nav-logo" href="index.html" style="text-decoration:none">Peiran Li</a>
+    <div class="nav-links">
+      <a href="index.html">home</a>
+      <a href="research.html" class="active">research</a>
+      <a href="life.html">life</a>
+    </div>
+  </nav>
+
+  <h1 class="page-title">Research</h1>
+  <p class="page-sub">Computational imaging and inverse problems; diffusion and generative priors for reconstruction.</p>
+
+  <!-- EDUCATION -->
+  <section class="section" id="education">
+    <div class="section-label">Education</div>
+    <div class="exp-item">
+      <div class="exp-date">Expected<br>Aug 2027</div>
+      <div>
+        <div class="exp-title">Master of Science, Computer Science</div>
+        <div class="exp-org">Dartmouth College · Hanover, NH</div>
+        <div class="exp-desc">50% Tuition Scholarship · Research Assistant with Prof. Adithya Pediredla</div>
+      </div>
+    </div>
+    <div class="exp-item">
+      <div class="exp-date">July 2025</div>
+      <div>
+        <div class="exp-title">Bachelor of Science, Computer Science · First Class Honours</div>
+        <div class="exp-org">The Chinese University of Hong Kong</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- RESEARCH -->
+  <section class="section" id="research">
+    <div class="section-label">Research interests</div>
+    <div class="interest-tags">
+      <span class="interest-tag">Computational Imaging</span>
+      <span class="interest-tag">Inverse Problems</span>
+      <span class="interest-tag">Generative Priors</span>
+      <span class="interest-tag">Computational Photography</span>
+    </div>
+    <p class="section-intro">I'm interested in sensor–algorithm co-design: how to shape the measurement (exposure, sampling, readout) so that a generative prior has an easy job at reconstruction time. Recent work uses diffusion priors to recover full-resolution images and HDR radiance from a single, heavily constrained capture.</p>
+
+    <div class="section-label">Publications</div>
+    <div class="research-card">
+      <div class="rc-header">
+        <div class="rc-title"><a href="https://scholar.google.com/citations?view_op=view_citation&hl=en&user=oMGvcq8AAAAJ&citation_for_view=oMGvcq8AAAAJ:u5HHmVD_uO8C" target="_blank">EEG-based Speech Decoding Based on Multi-mode Joint Modeling</a></div>
+        <span class="rc-badge">Interspeech 2025</span>
+      </div>
+      <div class="rc-authors"><strong>Peiran Li</strong>, Fei Chen, Xixin Wu</div>
+      <div class="rc-venue"><i class="ti ti-microphone" style="font-size:12px;vertical-align:-1px;margin-right:4px"></i>Interspeech 2025</div>
+    </div>
+  </section>
+
+  <!-- PROJECTS / RESEARCH EXPERIENCE -->
+  <section class="section" id="experience">
+    <div class="section-label">Research projects</div>
+
+    <!-- 1. Single-shot HDR -->
+    <article class="proj">
+      <a class="proj-fig pad" href="assets/hdr_teaser.pdf" target="_blank" title="Open figure as PDF">
+        <canvas class="pdf-fig" data-pdf="assets/hdr_teaser.pdf" data-fallback="assets/hdr_teaser.svg" style="aspect-ratio: 1741 / 691" aria-label="Single-shot HDR teaser: (a) forward model with a rolling-shutter camera and a coded exposure-time map producing one RAW coded measurement; (b) scene-specific reconstruction with a hash-grid MLP predicting HDR radiance; (c) results versus a single exposure at +3 EV, 0 EV and −6 EV."></canvas>
+      </a>
+      <div class="fig-caption">(a) A rolling-shutter camera exposes rows with a coded long/medium/short exposure-time map, producing one RAW coded measurement. (b) A hash-grid MLP predicts HDR radiance, which is pushed through the same forward model and fit to the measurement. (c) Compared with the best single exposure, both the +3 EV shadows and the −6 EV highlights are recovered.</div>
+      <div class="proj-body">
+        <div class="proj-head">
+          <div class="proj-title">Single-Shot HDR Imaging with Exposure Control</div>
+          <span class="rc-badge blue">Ongoing</span>
+        </div>
+        <div class="proj-meta">Dartmouth College · <em>Prof. Adithya Pediredla</em></div>
+        <div class="proj-date">May 2026 – Present · Research Assistant</div>
+        <p class="proj-sum">Instead of bracketing three exposures, expose different rows of a single frame for different durations, then recover the full HDR radiance from that one coded measurement.</p>
+        <ul class="proj-bullets">
+          <li>Formulated the sampling operator as row-wise long/medium/short exposures over a differentiable RAW sensor model, and captured a coded HDR dataset on an ArduCam module.</li>
+          <li>Recovered the HDR radiance from a single coded measurement with a pretrained generative prior, optimized self-supervised under an SNR-weighted loss.</li>
+          <li>Swapped in posterior-sampling (DPS, DAPS) and MAP/variational (RED-diff, plug-and-play) priors under the same forward model to compare them.</li>
+        </ul>
+        <div class="proj-links">
+          <a class="pill pill-sm" href="assets/hdr_teaser.pdf" target="_blank"><i class="ti ti-file-type-pdf"></i> Figure PDF</a>
+          <span class="note"><i class="ti ti-clock" style="vertical-align:-1px"></i> Manuscript in preparation</span>
+        </div>
+      </div>
+    </article>
+
+    <!-- 2. Bandwidth-limited imaging -->
+    <article class="proj">
+      <a class="proj-fig" href="assets/bw_teaser.pdf" target="_blank" title="Open figure as PDF">
+        <canvas class="pdf-fig" data-pdf="assets/bw_teaser.pdf" data-fallback="assets/bw_teaser.jpg" style="aspect-ratio: 1810 / 785" aria-label="Bandwidth-limited imaging teaser: (a) stratified random sampling on the sensor lattice reduces readout bandwidth; (b) an SD3 diffusion prior reconstructs the full image from a 6.25% pixel readout; (c) example results compared with ground truth."></canvas>
+      </a>
+      <div class="fig-caption">(a) Stratified random sampling directly on the sensor lattice cuts readout bandwidth. (b) A fine-tuned SD3 prior reconstructs the full image from a 6.25% pixel readout. (c) Example results against ground truth.</div>
+      <div class="proj-body">
+        <div class="proj-head">
+          <div class="proj-title">Towards Bandwidth-Limited Imaging with Generative Priors</div>
+          <span class="rc-badge amber">Under review</span>
+        </div>
+        <div class="proj-meta">Dartmouth College · <em>Prof. Adithya Pediredla</em> &amp; <em>Prof. Sotiris Nousias</em></div>
+        <div class="proj-date">Aug 2025 – Present · Research Assistant</div>
+        <p class="proj-sum">Sensor readout, not pixel count, is the bottleneck in modern imaging. Rather than binning or cropping, read out a random 6.25% of pixels at native resolution so aliasing becomes incoherent, then let a diffusion prior fill in the rest.</p>
+        <ul class="proj-bullets">
+          <li>Sampled 6.25% of pixels with a stratified random mask at native sensor resolution, turning the coherent aliasing of uniform subsampling into noise-like artifacts a prior can remove.</li>
+          <li>Completed the full image with an SD3 diffusion backbone, conditioning a trained ControlNet on the mask and a nearest-neighbor interpolation of the samples.</li>
+          <li>Outperformed downsample-then-super-resolve pipelines (Swin2SR, HAT, StableSR, Stable Diffusion ×4 Upscaler) at matched budget: LPIPS 0.192 vs 0.294, FID 10.99 vs 13.83, and every metric on Urban100.</li>
+          <li>Built a galvo-mirror / APD single-pixel scanner to emulate sparse readout optically along Lissajous trajectories, and validated the pipeline on self-captured RAW data.</li>
+        </ul>
+        <div class="proj-links">
+          <button class="pill pill-accent pill-sm" onclick="openDeck('bw')"><i class="ti ti-presentation"></i> Slides · VC Seminar, Feb 2026</button>
+          <a class="pill pill-sm" href="slides/bw_seminar.pdf" target="_blank"><i class="ti ti-file-type-pdf"></i> Slides PDF</a>
+          <a class="pill pill-sm" href="assets/bw_teaser.pdf" target="_blank"><i class="ti ti-file-type-pdf"></i> Figure PDF</a>
+        </div>
+      </div>
+    </article>
+
+    <!-- 3. EEG speech decoding -->
+    <article class="proj">
+      <div class="proj-body">
+        <div class="proj-head">
+          <div class="proj-title">EEG-based Speech Decoding with Multi-mode Joint Modeling</div>
+          <span class="rc-badge">Interspeech 2025</span>
+        </div>
+        <div class="proj-meta">Centre for Perceptual and Interactive Intelligence, Hong Kong · <em>Prof. Xixin Wu</em></div>
+        <div class="proj-date">Dec 2024 – Aug 2025 · Research Intern</div>
+        <p class="proj-sum">Imagined speech is the hardest EEG mode to decode. Training jointly on imagined, intended, and spoken speech gives the model a much stronger signal than imagined speech alone.</p>
+        <ul class="proj-bullets">
+          <li>Collected EEG from 11 participants across three speech modes: imagined, intended, and spoken.</li>
+          <li>Jointly modelled the three modes, augmenting EEGNet with dynamic masking over temporal-spatial features to reach 34.95% four-way vowel accuracy on imagined speech.</li>
+        </ul>
+        <div class="proj-links">
+          <a class="pill pill-sm" href="https://scholar.google.com/citations?view_op=view_citation&hl=en&user=oMGvcq8AAAAJ&citation_for_view=oMGvcq8AAAAJ:u5HHmVD_uO8C" target="_blank"><i class="ti ti-file-text"></i> Paper</a>
+        </div>
+      </div>
+    </article>
+
+    <!-- 4. Gaze-based weak supervision -->
+    <article class="proj">
+      <div class="proj-body">
+        <div class="proj-head">
+          <div class="proj-title">Gaze-Based Weak Supervision for Medical Image Segmentation</div>
+          <span class="rc-badge purple">Medical imaging</span>
+        </div>
+        <div class="proj-meta">The Chinese University of Hong Kong · <em>Prof. Qi Dou</em></div>
+        <div class="proj-date">Sep 2024 – Nov 2024 · Research Intern</div>
+        <p class="proj-sum">Where a clinician looks is a cheap, dense annotation. Eye-tracking traces can replace most of the pixel-level labeling for segmentation.</p>
+        <ul class="proj-bullets">
+          <li>Developed a weak-supervision scheme combining gaze annotation with multi-level learning from discriminative attention; operated eye trackers and preprocessed gaze with CRFs.</li>
+          <li>Cut annotation time from 12 hours to 2.2 hours with no loss in segmentation accuracy.</li>
+        </ul>
+      </div>
+    </article>
+  </section>
+
+  <!-- HARDWARE -->
+  <section class="section" id="hardware">
+    <div class="section-label">Hardware &amp; experimental systems</div>
+    <p class="section-intro">Most of my projects start at the optical table. I like building the capture rig myself so the forward model in the paper matches the one on the bench.</p>
+    <figure class="hw-photo">
+      <img src="assets/apd_setup.jpg" alt="Single-pixel scanning setup on an optical table: an avalanche photodiode (APD), a lens, a Thorlabs galvo mirror, bright lights, and a checkerboard scene." loading="lazy">
+      <figcaption>The single-pixel scanner used for the bandwidth-limited imaging project. A galvo mirror steers the line of sight through a lens onto a single APD, so the sensor reads exactly the pixels the Lissajous trajectory visits on the checkerboard scene.</figcaption>
+    </figure>
+    <div class="hw-grid">
+      <div class="hw-block">
+        <i class="ti ti-scan"></i>
+        <div class="hw-title">Galvo / APD scanning</div>
+        <div class="hw-desc">Built and aligned a galvanometer-mirror scanner with a single-pixel avalanche photodiode, driving the mirrors along resonant Lissajous trajectories to realize sparse sampling optically.</div>
+      </div>
+      <div class="hw-block">
+        <i class="ti ti-radar-2"></i>
+        <div class="hw-title">SPAD laser ranging</div>
+        <div class="hw-desc">Time-of-flight depth acquisition with single-photon avalanche diodes, including laser–detector synchronization and photon-timing histograms.</div>
+      </div>
+      <div class="hw-block">
+        <i class="ti ti-brain"></i>
+        <div class="hw-title">EEG &amp; eye tracking</div>
+        <div class="hw-desc">Operated EEG recording systems and eye trackers, and ran the full data-collection protocol with human participants.</div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <span class="footer-left">© 2026 Peiran Li · Dartmouth College</span>
+    <div class="footer-links">
+      <a href="mailto:peiran.li.gr@dartmouth.edu">Email</a>
+      <a href="https://scholar.google.com/citations?user=oMGvcq8AAAAJ&hl=en" target="_blank">Scholar</a>
+      <a href="https://github.com/prsteps" target="_blank">GitHub</a>
+    </div>
+  </footer>
+
+</div>
+
+<!-- SLIDE DECK VIEWER -->
+<div class="deck" id="deck" onclick="if (event.target === this) closeDeck()">
+  <button class="lightbox-close" onclick="closeDeck()">✕</button>
+  <div class="deck-stage">
+    <button class="deck-nav" id="deck-prev" onclick="deckStep(-1)" aria-label="Previous slide">‹</button>
+    <img id="deck-img" src="" alt="Slide" onclick="deckStep(1)">
+    <button class="deck-nav" id="deck-next" onclick="deckStep(1)" aria-label="Next slide">›</button>
+  </div>
+  <div class="deck-foot">
+    <span id="deck-title"></span>
+    <span class="deck-counter" id="deck-counter"></span>
+    <a id="deck-pdf" href="#" target="_blank">Open PDF</a>
+    <span>← → to navigate · Esc to close</span>
+  </div>
+</div>
+
+<script src="main.js"></script>
+</body>
+</html>

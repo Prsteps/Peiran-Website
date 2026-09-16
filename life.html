@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Life · Peiran Li</title>
+  <meta name="description" content="Photos by Peiran Li: travel, life, friends and family.">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 64 64%27%3E%3Crect width=%2764%27 height=%2764%27 rx=%2714%27 fill=%27%236B5AE0%27/%3E%3Ctext x=%2732%27 y=%2744%27 font-family=%27-apple-system,Helvetica,Arial,sans-serif%27 font-size=%2736%27 font-weight=%27600%27 fill=%27white%27 text-anchor=%27middle%27%3EP%3C/text%3E%3C/svg%3E">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3.34.0/dist/tabler-icons.min.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="site">
+
+  <!-- NAV -->
+  <nav class="nav">
+    <a class="nav-logo" href="index.html" style="text-decoration:none">Peiran Li</a>
+    <div class="nav-links">
+      <a href="index.html">home</a>
+      <a href="research.html">research</a>
+      <a href="life.html" class="active">life</a>
+    </div>
+  </nav>
+
+  <h1 class="page-title">Life</h1>
+  <p class="page-sub">Between experiments, I'm probably taking photos, exploring trails, or trying a new recipe.</p>
+
+  <!-- PHOTOS -->
+  <section class="section" id="photos">
+
+    <div class="tab-bar">
+      <div class="tab active" onclick="switchTab(this,'travel')">✈ Travel</div>
+      <div class="tab" onclick="switchTab(this,'life')">☀ Life</div>
+      <div class="tab" onclick="switchTab(this,'people')">♥ Friends & Family</div>
+    </div>
+
+    <!-- TRAVEL -->
+    <div class="panel active" id="panel-travel">
+      <div class="sub-tabs">
+        <div class="sub-tab active" onclick="switchCountry(this,'us')">🇺🇸 United States</div>
+        <div class="sub-tab" onclick="switchCountry(this,'hk')">🇭🇰 Hong Kong</div>
+        <div class="sub-tab" onclick="switchCountry(this,'jp')">🇯🇵 Japan</div>
+      </div>
+
+      <!-- US -->
+      <div id="country-us">
+        <div class="city-tabs">
+          <div class="city-tab active" onclick="switchCity(this,'hawaii')">🌺 Hawaii</div>
+          <div class="city-tab" onclick="switchCity(this,'orlando')">🎢 Orlando</div>
+        </div>
+        <!-- Photos are loaded dynamically from photos/travel/hawaii/ -->
+        <div class="grid-panel active" id="city-hawaii" data-folder="photos/travel/hawaii"></div>
+        <div class="grid-panel" id="city-orlando" data-folder="photos/travel/orlando"></div>
+      </div>
+
+      <!-- HK -->
+      <div id="country-hk" style="display:none">
+        <div class="photo-grid" data-folder="photos/travel/hongkong" id="grid-hk"></div>
+      </div>
+
+      <!-- Japan -->
+      <div id="country-jp" style="display:none">
+        <div class="photo-grid" data-folder="photos/travel/japan" id="grid-jp"></div>
+      </div>
+    </div>
+
+    <!-- LIFE -->
+    <div class="panel" id="panel-life">
+      <div class="photo-grid" data-folder="photos/life" id="grid-life"></div>
+    </div>
+
+    <!-- PEOPLE -->
+    <div class="panel" id="panel-people">
+      <div class="photo-grid" data-folder="photos/people" id="grid-people"></div>
+    </div>
+  </section>
+
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <span class="footer-left">© 2026 Peiran Li · Dartmouth College</span>
+    <div class="footer-links">
+      <a href="mailto:peiran.li.gr@dartmouth.edu">Email</a>
+      <a href="https://scholar.google.com/citations?user=oMGvcq8AAAAJ&hl=en" target="_blank">Scholar</a>
+      <a href="https://github.com/prsteps" target="_blank">GitHub</a>
+    </div>
+  </footer>
+
+</div>
+
+<!-- LIGHTBOX -->
+<div class="lightbox" id="lightbox" onclick="closeLightbox()">
+  <button class="lightbox-close" onclick="closeLightbox()">✕</button>
+  <img id="lightbox-img" src="" alt="">
+</div>
+
+<script src="main.js"></script>
+</body>
+</html>
